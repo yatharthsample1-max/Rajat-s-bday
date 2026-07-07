@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAJAT.SYS — Boot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .hero {
+    position: relative;
+    max-width: 880px;
+    margin: 40px auto 0;
+    padding: 70px 24px 60px;
+    text-align: center;
+    border-radius: 18px;
+    background: radial-gradient(ellipse at 50% 0%, rgba(79,166,255,0.12), transparent 60%), var(--bg-panel);
+    border: 1px solid rgba(255,255,255,0.06);
+    overflow: hidden;
+  }
+
+  /* scanline overlay — the one orchestrated moment on this page */
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.035) 0px,
+      rgba(255,255,255,0.035) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    animation: flicker 5s infinite steps(30);
+    pointer-events: none;
+  }
+
+  @keyframes flicker {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 0.9; }
+    52% { opacity: 0.5; }
+  }
+
+  .eyebrow {
+    font-family: var(--font-pixel);
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--ink-dim);
+    margin-bottom: 22px;
+  }
+
+  .level-number {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(5rem, 18vw, 9rem);
+    line-height: 1;
+    margin: 0;
+    background: linear-gradient(180deg, #ffffff, var(--legendary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .level-label {
+    font-family: var(--font-pixel);
+    font-size: 12px;
+    color: var(--legendary);
+    letter-spacing: 1px;
+    margin-top: 6px;
+  }
+
+  .name-display {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.8rem;
+    margin: 26px 0 8px;
+  }
+
+  .boot-line {
+    font-size: 1.05rem;
+    color: var(--ink-dim);
+    max-width: 480px;
+    margin: 0 auto 30px;
+    line-height: 1.6;
+  }
+
+  .xp-bar {
+    max-width: 320px;
+    margin: 0 auto 34px;
+    height: 8px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.08);
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .xp-bar__fill {
+    height: 100%;
+    width: 100%;
+    background: repeating-linear-gradient(
+      45deg,
+      var(--rare), var(--rare) 8px,
+      var(--epic) 8px, var(--epic) 16px
+    );
+  }
+
+  .flavor {
+    font-size: 0.95rem;
+    color: var(--ink-dim);
+    max-width: 460px;
+    margin: 26px auto 0;
+    line-height: 1.7;
+  }
+</style>
+</head>
+<body>
+
+<header class="hud">
+  <div class="hud__brand"><span class="hud__lvl">LVL 19</span> RAJAT.SYS</div>
+  <nav class="hud__nav">
+    <a href="index.html" class="hud__tab is-active">HOME</a>
+    <a href="highlights.html" class="hud__tab">STATS</a>
+    <a href="message.html" class="hud__tab">MESSAGE</a>
+  </nav>
+</header>
+<div class="hud__progress"><div class="hud__progress-fill" style="width:33%"></div></div>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="eyebrow">NEW SAVE FILE DETECTED</div>
+
+    <div class="level-number" id="levelNumber">1</div>
+    <div class="level-label">CURRENT LEVEL</div>
+
+    <div class="name-display">PLAYER 1 — RAJAT</div>
+    <div class="boot-line">loading another year of chaos, questionable decisions, and pure main-character energy…</div>
+
+    <div class="xp-bar"><div class="xp-bar__fill"></div></div>
+
+    <a href="highlights.html" class="next-btn">▶ PRESS START</a>
+
+    <div class="flavor">Boss fights: survived. Side quests: mostly the fun ones. XP bar's been broken since day one — it only goes up.</div>
+  </div>
+
+  <div class="footer-note">RAJAT.SYS · PAGE 1 OF 3</div>
+</div>
+
+<script src="script.js"></script>
+<script>
+  countUp(document.getElementById('levelNumber'), 19, 1600);
+</script>
+</body>
+</html>
