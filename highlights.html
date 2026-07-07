@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAJAT.SYS — Stats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .page-head {
+    text-align: center;
+    padding: 46px 24px 10px;
+  }
+  .page-head h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 4vw, 2.3rem);
+    margin: 0 0 8px;
+  }
+  .page-head p {
+    color: var(--ink-dim);
+    margin: 0;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 34px;
+  }
+
+  .card {
+    background: var(--bg-panel);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 22px 20px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .card:hover { transform: translateY(-4px); }
+
+  .card__icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+  .card__title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin: 0 0 10px;
+  }
+  .card__tag {
+    display: inline-block;
+    font-family: var(--font-pixel);
+    font-size: 9px;
+    letter-spacing: 0.5px;
+    padding: 5px 8px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+  }
+  .card__text {
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: var(--ink-dim);
+    margin: 0;
+  }
+
+  .card--rare { border-color: rgba(79,166,255,0.35); box-shadow: 0 0 0 1px rgba(79,166,255,0.08) inset; }
+  .card--rare .card__tag { background: rgba(79,166,255,0.15); color: var(--rare); }
+  .card--rare:hover { box-shadow: 0 10px 30px rgba(79,166,255,0.15); }
+
+  .card--epic { border-color: rgba(179,104,255,0.35); }
+  .card--epic .card__tag { background: rgba(179,104,255,0.15); color: var(--epic); }
+  .card--epic:hover { box-shadow: 0 10px 30px rgba(179,104,255,0.15); }
+
+  .card--legendary { border-color: rgba(255,194,75,0.4); }
+  .card--legendary .card__tag { background: rgba(255,194,75,0.15); color: var(--legendary); }
+  .card--legendary:hover { box-shadow: 0 10px 30px rgba(255,194,75,0.18); }
+
+  .card--glitch { border-color: rgba(255,92,122,0.4); }
+  .card--glitch .card__tag { background: rgba(255,92,122,0.15); color: var(--glitch); animation: glitchtext 2.4s infinite; }
+  .card--glitch .card__title { animation: glitchshift 3.6s infinite; }
+  @keyframes glitchtext { 0%,100% { opacity:1; } 92% { opacity:1; } 93% { opacity:0.4; transform: translateX(1px); } 94% { opacity:1; transform: none; } }
+  @keyframes glitchshift { 0%,100% { transform: translateX(0); } 96% { transform: translateX(0); } 97% { transform: translateX(-2px); } 98% { transform: translateX(2px); } 99% { transform: translateX(0); } }
+
+  .card--mythic {
+    grid-column: span 2;
+    border-color: rgba(255,194,75,0.55);
+    background: linear-gradient(135deg, var(--bg-panel-raised), var(--bg-panel));
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .card--mythic .card__icon { font-size: 2.6rem; margin-bottom: 0; }
+  .card--mythic .card__tag { background: rgba(255,194,75,0.18); color: var(--legendary); }
+  .card--mythic .card__body { flex: 1; }
+
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: 1fr; }
+    .card--mythic { grid-column: span 1; flex-direction: column; align-items: flex-start; text-align: left; }
+  }
+
+  .continue-wrap { text-align: center; margin-top: 40px; }
+</style>
+</head>
+<body>
+
+<header class="hud">
+  <div class="hud__brand"><span class="hud__lvl">LVL 19</span> RAJAT.SYS</div>
+  <nav class="hud__nav">
+    <a href="index.html" class="hud__tab">HOME</a>
+    <a href="highlights.html" class="hud__tab is-active">STATS</a>
+    <a href="message.html" class="hud__tab">MESSAGE</a>
+  </nav>
+</header>
+<div class="hud__progress"><div class="hud__progress-fill" style="width:66%"></div></div>
+
+<div class="wrap">
+  <div class="page-head">
+    <h1>ACHIEVEMENTS UNLOCKED</h1>
+    <p>RAJAT — AGE 19 — SAVE FILE HEALTHY (MOSTLY)</p>
+  </div>
+
+  <div class="grid">
+    <div class="card card--rare">
+      <span class="card__icon">🎮</span>
+      <div class="card__tag">RARE</div>
+      <h3 class="card__title">Respawn Specialist</h3>
+      <p class="card__text">Died more times than anyone can count. Respawned every single time with the exact same unmatched confidence.</p>
+    </div>
+
+    <div class="card card--epic">
+      <span class="card__icon">⛩️</span>
+      <div class="card__tag">EPIC</div>
+      <h3 class="card__title">Protagonist Arc: Active</h3>
+      <p class="card__text">Main-character energy, full filler-arc immunity, and a glow-up already scheduled for this season.</p>
+    </div>
+
+    <div class="card card--legendary">
+      <span class="card__icon">📱</span>
+      <div class="card__tag">LEGENDARY</div>
+      <h3 class="card__title">Certified Meme Lord</h3>
+      <p class="card__text">Terminally online, internet boy allegedly. If doom-scrolling paid rent, you'd own the whole block by now.</p>
+    </div>
+
+    <div class="card card--glitch">
+      <span class="card__icon">📚</span>
+      <div class="card__tag">??? BUGGED</div>
+      <h3 class="card__title">Skill Tree: Studies</h3>
+      <p class="card__text">Achievement failed to load. Textbooks remain undefeated. Vibes, however, are sitting at max level.</p>
+    </div>
+
+    <div class="card card--mythic">
+      <span class="card__icon">🤝</span>
+      <div class="card__body">
+        <div class="card__tag">MYTHIC · 1 OF 1 · NEVER TRADED</div>
+        <h3 class="card__title">Ride-or-Die Friend</h3>
+        <p class="card__text">The rarest drop there is. Shows up, keeps it real, and never lets the people around him fight alone. Certified irreplaceable.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="continue-wrap">
+    <a href="message.html" class="next-btn">▶ CONTINUE TO MESSAGE</a>
+  </div>
+
+  <div class="footer-note">RAJAT.SYS · PAGE 2 OF 3</div>
+</div>
+
+</body>
+</html>
