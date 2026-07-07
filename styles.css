@@ -1,0 +1,300 @@
+/* =========================================================
+   RAJAT.SYS — design tokens
+   Concept: a game "player profile" you boot into, check stats
+   on, then get a DM on. Rarity tiers (common/rare/epic/legendary)
+   double as the emotional grading of each achievement.
+   ========================================================= */
+
+:root {
+  /* surfaces */
+  --bg-void: #0b0e14;
+  --bg-panel: #141a24;
+  --bg-panel-raised: #1b2333;
+
+  /* text */
+  --ink: #eceef4;
+  --ink-dim: #8b93a6;
+
+  /* rarity accents (semantic, not decorative) */
+  --rare: #4fa6ff;      /* gaming */
+  --epic: #b368ff;      /* anime */
+  --legendary: #ffc24b; /* memes / good-friend finale */
+  --glitch: #ff5c7a;    /* the studies joke */
+
+  /* type */
+  --font-display: "Space Grotesk", sans-serif;
+  --font-pixel: "Press Start 2P", monospace;
+  --font-body: "Inter", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-void);
+  color: var(--ink);
+  font-family: var(--font-body);
+  min-height: 100%;
+}
+
+body {
+  background-image:
+    radial-gradient(1px 1px at 20px 30px, rgba(255,255,255,0.25) 1px, transparent 0),
+    radial-gradient(1px 1px at 90px 80px, rgba(255,255,255,0.18) 1px, transparent 0),
+    radial-gradient(1px 1px at 150px 140px, rgba(255,255,255,0.15) 1px, transparent 0),
+    radial-gradient(1px 1px at 60px 170px, rgba(255,255,255,0.2) 1px, transparent 0);
+  background-size: 200px 200px;
+  background-repeat: repeat;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font-family: var(--font-body); }
+
+.wrap {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+/* ---------- HUD header / nav (shared across pages) ---------- */
+
+.hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 22px 24px 14px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hud__brand {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: var(--ink-dim);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hud__lvl {
+  background: var(--bg-panel-raised);
+  border: 1px solid rgba(255,194,75,0.35);
+  color: var(--legendary);
+  padding: 5px 8px;
+  border-radius: 4px;
+}
+
+.hud__nav {
+  display: flex;
+  gap: 4px;
+  font-family: var(--font-pixel);
+  font-size: 10px;
+}
+
+.hud__tab {
+  padding: 8px 12px;
+  border-radius: 4px;
+  color: var(--ink-dim);
+  border: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.hud__tab:hover { color: var(--ink); }
+
+.hud__tab.is-active {
+  color: var(--bg-void);
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+.hud__progress {
+  max-width: 880px;
+  margin: 0 auto;
+  height: 3px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.hud__progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--rare), var(--epic), var(--legendary));
+}
+
+/* ---------- Nav buttons at page bottom ---------- */
+
+.next-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  padding: 15px 28px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--bg-void);
+  background: var(--ink);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.next-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.35); }
+.next-btn:focus-visible { outline: 3px solid var(--rare); outline-offset: 3px; }
+
+.footer-note {
+  text-align: center;
+  color: var(--ink-dim);
+  font-size: 0.8rem;
+  margin-top: 40px;
+}
+
+/* ---------- music control ---------- */
+
+.music-control {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(20, 26, 36, 0.92);
+  color: var(--ink);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.28);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.music-control:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.22); }
+.music-control:focus-visible { outline: 3px solid var(--rare); outline-offset: 3px; }
+
+.music-control__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--glitch);
+  box-shadow: 0 0 0 0 rgba(255,92,122,0.55);
+  animation: musicPulse 1.8s infinite;
+}
+
+.music-control.is-on .music-control__dot {
+  background: #3cd873;
+  box-shadow: 0 0 0 0 rgba(60,216,115,0.55);
+  animation-name: musicPulseOn;
+}
+
+.music-control__label {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  letter-spacing: 0.6px;
+  white-space: nowrap;
+}
+
+@keyframes musicPulse {
+  0% { box-shadow: 0 0 0 0 rgba(255,92,122,0.55); }
+  70% { box-shadow: 0 0 0 10px rgba(255,92,122,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,92,122,0); }
+}
+
+@keyframes musicPulseOn {
+  0% { box-shadow: 0 0 0 0 rgba(60,216,115,0.55); }
+  70% { box-shadow: 0 0 0 10px rgba(60,216,115,0); }
+  100% { box-shadow: 0 0 0 0 rgba(60,216,115,0); }
+}
+
+/* ---------- birthday overlay ---------- */
+
+.celebration-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at top, rgba(255,194,75,0.18), transparent 40%),
+    linear-gradient(180deg, rgba(11,14,20,0.15), rgba(11,14,20,0.72));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+}
+
+.celebration-overlay.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.celebration-panel {
+  width: min(560px, 100%);
+  text-align: center;
+  padding: 28px 22px;
+  border-radius: 20px;
+  background: rgba(20, 26, 36, 0.96);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+  backdrop-filter: blur(12px);
+}
+
+.celebration-kicker {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  color: var(--legendary);
+  margin-bottom: 14px;
+}
+
+.celebration-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  line-height: 1.05;
+  margin: 0 0 10px;
+}
+
+.celebration-text {
+  margin: 0;
+  color: var(--ink-dim);
+  line-height: 1.65;
+}
+
+.celebration-close {
+  margin-top: 18px;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--legendary), var(--glitch));
+  color: #1a1200;
+  font-family: var(--font-display);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ---------- reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+/* ---------- confetti (used on message page) ---------- */
+
+.confetti-piece {
+  position: fixed;
+  top: -10px;
+  font-size: 1.4em;
+  z-index: 50;
+  animation: confetti-fall linear forwards;
+  pointer-events: none;
+}
+
+@keyframes confetti-fall {
+  to { transform: translateY(110vh) rotate(360deg); opacity: 0.9; }
+}
